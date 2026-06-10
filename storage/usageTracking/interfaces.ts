@@ -10,6 +10,7 @@ export interface ListUsageTrackingOptions {
   client?: string;
   /** Match any of these client ids (SQL `client IN (...)`). Complements `client`. */
   clients?: string[];
+  provider?: string;
 }
 
 /** Dimension to group usage aggregates by. `day`/`hour` are timezone-aware. */
@@ -18,6 +19,7 @@ export type UsageGroupBy =
   | "baseUrl"
   | "client"
   | "sessionId"
+  | "provider"
   | "day"
   | "hour";
 
@@ -45,6 +47,15 @@ export interface UsageAggregateRow {
   totalTokens: number;
   cost: number;
   satsCost: number;
+  baseMsats: number;
+  inputMsats: number;
+  outputMsats: number;
+  totalMsats: number;
+  totalUsd: number;
+  cacheReadInputTokens: number;
+  cacheCreationInputTokens: number;
+  cacheReadMsats: number;
+  cacheCreationMsats: number;
 }
 
 export interface UsageTrackingDriver {
